@@ -24,4 +24,3 @@ export const addChallengeController = async (req, res) => {
     error('addChallengeController - error= ', error);
   }
 };
-
