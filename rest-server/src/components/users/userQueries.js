@@ -23,7 +23,7 @@ export const fetchAllUserQuery = async () => {
 export const fetchUserQuery = async (payload) => {
   try {
     const queryString = fetchUserHelper(payload);
-    const data = db.queryAsync(queryString);
+    const data = await db.queryAsync(queryString);
     success('fetchUserQuery - successfully fetched all users ', data);
     return data;
   } catch (err) {
