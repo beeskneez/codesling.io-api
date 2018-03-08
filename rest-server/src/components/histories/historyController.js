@@ -35,7 +35,7 @@ export const fetchHistoryController = async (req, res) => {
     for (let row of rows) {
       console.log('our row', row);
       const user = await fetchUserQuery(row.challenger_id);
-      row.receiver = user;
+      row.user = user;
     } 
     // await rows.forEach(async (row) => {
     //   const user = await fetchUserQuery(row.challenger_id);
