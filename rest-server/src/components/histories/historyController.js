@@ -32,7 +32,7 @@ export const fetchHistoryController = async (req, res) => {
     const { rows } = await historyQueryHelper(req.params);
     for (let row of rows) {
       console.log('our row', row);
-      const user = await fetchUserQuery(row.challenger_id);
+      const user = await fetchUserQuery(row.user_id);
       row.user = user;
     } 
     return res.status(200).send(rows);
