@@ -1,6 +1,6 @@
-export const addTestCaseHelper = ({ content, challenge_id }) => {
+export const addTestCaseHelper = ({ testinput, testoutput, challenge_id }) => {
   return `
-    INSERT INTO testCases (content, challenge_id)
-    VALUES ('${content}', ${challenge_id})
+    INSERT INTO testCases (testinput, testouput, challenge_id)
+    VALUES ('${testinput}', '${testoutput}', ${challenge_id})
   `;
 };
