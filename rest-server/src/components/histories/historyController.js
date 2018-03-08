@@ -28,8 +28,6 @@ export const historyController = async (req, res) => {
 import { fetchUserQuery } from '../users/userQueries';
 
 export const fetchHistoryController = async (req, res) => {
-        console.log("params", req.params);
-
   try {
     const { rows } = await historyQueryHelper(req.params);
     for (let row of rows) {
@@ -37,10 +35,6 @@ export const fetchHistoryController = async (req, res) => {
       const user = await fetchUserQuery(row.challenger_id);
       row.user = user;
     } 
-    // await rows.forEach(async (row) => {
-    //   const user = await fetchUserQuery(row.challenger_id);
-    //   row.receiver = user;
-    // });
     return res.status(200).send(rows);
   } catch (err) {
     error('error fetching messages ', err);
