@@ -21,23 +21,26 @@ export const historyController = async (req, res) => {
     return res.status(200).send();
   } catch (err) {
     error('historyController - error= ', err);
-    return res.status(200).send(err);
+    return res.status(400).send(err);
   }
 };
 
 import { fetchUserQuery } from '../users/userQueries';
 
 export const fetchHistoryController = async (req, res) => {
+        console.log("params", req.params);
+
   try {
     const { rows } = await historyQueryHelper(req.params);
-    // for (let row of rows) {
-    //   const user = await fetchUserQuery(row.challenger_id);
-    //   row.receiver = user;
-    // } 
-    await rows.forEach(async (row) => {
+    for (let row of rows) {
+      console.log('our row', row);
       const user = await fetchUserQuery(row.challenger_id);
       row.receiver = user;
-    });
+    } 
+    // await rows.forEach(async (row) => {
+    //   const user = await fetchUserQuery(row.challenger_id);
+    //   row.receiver = user;
+    // });
     return res.status(200).send(rows);
   } catch (err) {
     error('error fetching messages ', err);

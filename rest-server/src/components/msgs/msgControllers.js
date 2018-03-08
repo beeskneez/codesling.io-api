@@ -12,7 +12,7 @@ export const fetchMessagesController = async (req, res) => {
   try {
     const { rows } = await fetchMessageQuery(req.params);
     await rows.forEach(async (row) => {
-      user = await fetchUserQuery(row.receiver_id);
+      const user = await fetchUserQuery(row.receiver_id);
       row.receiver = user;
     });
     return res.status(200).send(rows);
