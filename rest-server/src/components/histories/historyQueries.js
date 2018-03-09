@@ -25,7 +25,6 @@ export const historyQuery = async (payload, url) => {
   if (url === '/addHistory') {
     try {
       const queryString = addHistoryHelper(payload);
-      console.log(payload.time)
       const data = await db.queryAsync(queryString);
       success('historyQueryHelper - successfully retrieved data ', data);
       return data;

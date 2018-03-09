@@ -6,12 +6,12 @@ import {
 
 export const globalQueryHelper = async (payload, query, name) => {
   try {
-    const queryString = await query(payload);
+    const queryString = query(payload);
+    console.log('my payload', payload)
+    console.log(query)
     const data = await db.queryAsync(queryString);
     success(`${name} - successfully retrived data ${JSON.stringify(data)}`);
     return data;
-    // creates unhandled promise rejection
-    // return res.status(200).send(data);
   } catch (err) {
     error(`${name} - error= ', err`);
     return res.status(400).send(err);
