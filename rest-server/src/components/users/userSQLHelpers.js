@@ -12,3 +12,11 @@ export const fetchUserHelper = (user_id) => {
     WHERE id=${user_id}
   `;
 };
+
+export const fetchUsernameHelper = (username) => {
+  return `
+    SELECT id, email, username, password, clout, kdr
+    FROM users
+    WHERE username='${username}'
+  `;
+};
