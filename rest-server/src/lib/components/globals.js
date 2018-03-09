@@ -6,10 +6,12 @@ import {
 
 export const globalQueryHelper = async (payload, query, name) => {
   try {
-    const queryString = query(payload);
+    const queryString = await query(payload);
     const data = await db.queryAsync(queryString);
     success(`${name} - successfully retrived data ${JSON.stringify(data)}`);
     return data;
+    // creates unhandled promise rejection
+    // return res.status(200).send(data);
   } catch (err) {
     error(`${name} - error= ', err`);
     return res.status(400).send(err);
@@ -26,7 +28,7 @@ export const globalController = (query, name) => {
       payload = req.params;
     }
     try {
-      const { rows } = query(payload, url);
+      const { rows } = await query(payload, url);
       success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
       return res.status(200).send(rows);
     } catch (err) {
