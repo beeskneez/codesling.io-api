@@ -23,7 +23,7 @@ io.on('connection', (client) => {
   client.on('msg', (data) => {
     io.sockets.emit('newmsg', data);
     success('message sent');
-  })
+  });
 });
 
 const PORT = process.env.PORT || 4155;
