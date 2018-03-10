@@ -19,6 +19,11 @@ io.on('connection', (client) => {
   each(clientEvents, (handler, event) => {
     client.on(event, handler.bind(null, { io, client, room }));
   });
+
+  client.on('msg', (data) => {
+    io.sockets.emit('newmsg', data);
+    success('message sent');
+  })
 });
 
 const PORT = process.env.PORT || 4155;
